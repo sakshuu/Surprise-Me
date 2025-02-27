@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./assets/css/index.css"
 
 const App = () => {
   const jokes = [
@@ -10,10 +11,12 @@ const App = () => {
   ];
 
   const [currentJoke, setCurrentJoke] = useState("");
+  const [showJoke, setShowJoke] = useState(false);
 
   const handleSurpriseMe = () => {
     const randomIndex = Math.floor(Math.random() * jokes.length);
     setCurrentJoke(jokes[randomIndex]);
+    setShowJoke(true); 
   };
 
   return (
@@ -54,23 +57,23 @@ const App = () => {
             transition: "background-color 0.3s ease",
           }}
           onMouseOver={(e) => (e.target.style.backgroundColor = "#7B1FA2")} 
-          onMouseOut={(e) => (e.target.style.backgroundColor = "#9C27B0")}
+          onMouseOut={(e) => (e.target.style.backgroundColor = "#9C27B0")} 
         >
           Surprise Me!
         </button>
-        {currentJoke && (
+        {showJoke && (
           <div
-            className="mt-4 p-3 rounded shadow-sm"
-            style={{
-              backgroundColor: "#2C2C2C", 
-              color: "#E0E0E0",
-              border: "1px solid #9C27B0", 
-            }}
-          >
-            <p className="h5" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-              {currentJoke}
-            </p>
-          </div>
+  className="mt-4 p-3 rounded shadow-sm joke-container" 
+  style={{
+    backgroundColor: "#2C2C2C",
+    color: "#E0E0E0",
+    border: "1px solid #9C27B0",
+  }}
+>
+  <p className="h5" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+    {currentJoke}
+  </p>
+</div>
         )}
       </div>
     </div>
